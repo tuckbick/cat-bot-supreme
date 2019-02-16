@@ -4,7 +4,7 @@ const Hapi = require('hapi');
 const Twit = require('twit');
 const config = require('./config');
 
-const server = Hapi.server({host: '0.0.0.0', port: 8080});
+const server = Hapi.server({host: '0.0.0.0', port: process.env.PORT});
 
 server.route([
     {
