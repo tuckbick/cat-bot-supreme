@@ -33,7 +33,7 @@ server.route([
 const twit = new Twit(config);
 
 twit.post(`/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
-    console.log('RESPONSE', response);
+    // console.log('RESPONSE', response);
 });
 
 
