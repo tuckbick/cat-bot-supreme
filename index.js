@@ -9,7 +9,7 @@ server.route([
         method: 'GET',
         path: '/webhook',
         handler(request, h) {
-            console.log('REQUEST', request);
+            console.log('REQUEST', request.payload);
             // const sha256_hash_digest = Hash.hmac(config.consumer_secret, )
 
             // Hash.sha256().update()
