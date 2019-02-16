@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tuckbick/cat-bot-supreme/issues"
   },
-  "homepage": "https://github.com/tuckbick/cat-bot-supreme#readme"
+  "homepage": "https://github.com/tuckbick/cat-bot-supreme#readme",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
 }
