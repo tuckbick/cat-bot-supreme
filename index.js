@@ -28,13 +28,19 @@ server.route([
     // }
 ]);
 
+(async () => {
+    await server.start();
 
+    const twit = new Twit(config);
 
-const twit = new Twit(config);
-
-twit.post(`/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
-    // console.log('RESPONSE', response);
+    twit.post(`/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
+        // console.log('RESPONSE', response);
+    });
 });
+
+
+
+
 
 
 
