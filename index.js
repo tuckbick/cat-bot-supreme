@@ -9,7 +9,7 @@ const server = Hapi.server({host: '0.0.0.0', port: 8080});
 server.route([
     {
         method: 'GET',
-        path: '/webhook',
+        path: '/webhook.json',
         handler(request, h) {
             console.log('REQUEST', request.payload);
             // const sha256_hash_digest = Hash.hmac(config.consumer_secret, )
