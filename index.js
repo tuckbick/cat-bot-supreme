@@ -1,8 +1,10 @@
+'use strict';
+
 const Hapi = require('hapi');
 const Twit = require('twit');
 const config = require('./config');
 
-const server = Hapi.server({port: 80});
+const server = Hapi.server({host: '0.0.0.0', port: 80});
 
 server.route([
     {
@@ -29,14 +31,17 @@ server.route([
 ]);
 
 (async () => {
-    await server.start();
+    try {
+        await server.start();
 
-    const twit = new Twit(config);
-
-    twit.post(`/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
-        // console.log('RESPONSE', response);
-    });
-});
+        const twit = new Twit(config);
+        twit.post(`/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
+            // console.log('RESPONSE', response);
+        });
+    } catch (e) {
+        console.error(e);
+    }
+})();
 
 
 
