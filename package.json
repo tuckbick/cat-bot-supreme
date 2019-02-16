@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/tuckbick/cat-bot-supreme#readme",
   "dependencies": {
+    "crypto": "^1.0.1",
+    "hapi": "^18.1.0",
     "twit": "^2.2.11"
   }
 }
