@@ -18,25 +18,13 @@ server.route([
     },
     {
         method: 'GET',
-        path: '/webhook.json',
+        path: '/webhook',
         handler(request, h) {
-            console.log('REQUEST', request);
-            // const sha256_hash_digest = Hash.hmac(config.consumer_secret, )
-
-            // Hash.sha256().update()
-
-            // return {
-            //     response_token: `sha256=${crypto.createHmac('sha256', config.consumer_secret).update(crc_token).digest('base64')}`
-            // }
+            return {
+                response_token: `sha256=${crypto.createHmac('sha256', config.consumer_secret).update(request.query.crc_token).digest('base64')}`
+            }
         }
     }
-    // {
-    //     method: 'POST',
-    //     path: '/webhook',
-    //     handler(request, h) {
-
-    //     }
-    // }
 ]);
 
 (async () => {
@@ -44,9 +32,7 @@ server.route([
         await server.start();
 
         const twit = new Twit(config);
-        twit.post(`account_activity/all/dev/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
-            // console.log('RESPONSE', response);
-        });
+        twit.post('account_activity/all/dev/webhooks', {url: `https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`});
     } catch (e) {
         console.error(e);
     }
