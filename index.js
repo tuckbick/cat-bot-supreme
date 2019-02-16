@@ -20,7 +20,7 @@ server.route([
         method: 'GET',
         path: '/webhook.json',
         handler(request, h) {
-            console.log('REQUEST', request.payload);
+            console.log('REQUEST', request);
             // const sha256_hash_digest = Hash.hmac(config.consumer_secret, )
 
             // Hash.sha256().update()
@@ -45,7 +45,7 @@ server.route([
 
         const twit = new Twit(config);
         twit.post(`account_activity/all/dev/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
-            console.log('RESPONSE', response);
+            // console.log('RESPONSE', response);
         });
     } catch (e) {
         console.error(e);
