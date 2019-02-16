@@ -2,6 +2,7 @@
 
 const Hapi = require('hapi');
 const Twit = require('twit');
+const Crypto = require('crypto');
 const config = require('./config');
 
 const PORT = process.env.PORT || 8080;
@@ -21,7 +22,7 @@ server.route([
         path: '/webhook',
         handler(request, h) {
             return {
-                response_token: `sha256=${crypto.createHmac('sha256', config.consumer_secret).update(request.query.crc_token).digest('base64')}`
+                response_token: `sha256=${Crypto.createHmac('sha256', config.consumer_secret).update(request.query.crc_token).digest('base64')}`
             }
         }
     }
