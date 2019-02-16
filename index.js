@@ -4,9 +4,16 @@ const Hapi = require('hapi');
 const Twit = require('twit');
 const config = require('./config');
 
-const server = Hapi.server({host: '0.0.0.0', port: process.env.PORT});
+const server = Hapi.server({port: process.env.PORT});
 
 server.route([
+    {
+        method: 'GET',
+        path: '/alive.txt',
+        handler(request, h) {
+            return 'OK';
+        }
+    },
     {
         method: 'GET',
         path: '/webhook.json',
