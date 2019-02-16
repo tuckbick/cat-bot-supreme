@@ -4,7 +4,9 @@ const Hapi = require('hapi');
 const Twit = require('twit');
 const config = require('./config');
 
-const server = Hapi.server({port: process.env.PORT});
+const PORT = process.env.PORT || 8080;
+
+const server = Hapi.server({port: PORT});
 
 server.route([
     {
@@ -42,8 +44,8 @@ server.route([
         await server.start();
 
         const twit = new Twit(config);
-        twit.post(`/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com:${process.env.PORT}/webhook`, function(err, data, response) {
-            console.log('RESPONSE', response);
+        twit.post(`/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com:/webhook`, function(err, data, response) {
+            // console.log('RESPONSE', response);
         });
     } catch (e) {
         console.error(e);
