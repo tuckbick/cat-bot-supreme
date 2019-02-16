@@ -44,7 +44,7 @@ server.route([
         await server.start();
 
         const twit = new Twit(config);
-        twit.post(`/account_activity/all/dev/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
+        twit.post(`account_activity/all/dev/webhooks.json?url=https://${process.env.HEROKU_APP_NAME}.herokuapp.com/webhook`, function(err, data, response) {
             console.log('RESPONSE', response);
         });
     } catch (e) {
